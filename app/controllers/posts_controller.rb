@@ -20,28 +20,34 @@ class PostsController < ApplicationController
 
       respond_to do |format|
         if @post.save
-          format.html { redirect_to @post, notice: 'Post successfully created' }
+          flash[:notice] = 'Post successfully created'
+          format.html { redirect_to @post }
           format.json { render :show, status: :created, location: @post }
         else
           format.html { render :new}
           format.json { render json: @post.errors, status: :unprocessable }
+        end
+      end
+    end
   end
 
   def update
     respond_to do |format|
       if @post.update(post_params)
-        format.html { redirect_to @post, notice: 'Post successfully created' }
+        flash[:notice] = 'Post successfully updated'
+        format.html { redirect_to @post }
         format.json { render :show, status: :created, location: @post }
       else
-        format.html { render :new}
+        format.html { render :edit}
         format.json { render json: @post.errors, status: :unprocessable }
       end
+    end
   end
 
-  def delete
+  def destroy
     @post.destroy
     respond_to do |format|
-      format.html { render :new}
+      format.html { redirect_to post_path}
       format.json { head :no_content }
     end
   end
