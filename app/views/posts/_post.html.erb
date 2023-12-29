@@ -1,0 +1,16 @@
+<% @posts.each do |post|%>
+  <div class="card" style="width: 100%; margin-top: 10px;">
+    <div class="card-header">
+      <%= post.title %>
+    </div>
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+      <p class="card-text"><%= post.content %></p>
+    </div>
+    <div class="card-footer text-muted">
+      <button><%= link_to 'view', post_path(post) %></button>
+      <button><%= link_to 'delete', post_path(post), method: :delete, data: { confirm: 'Are you sure you want to delete this post?' } %></button>
+      by <%= post.user.username %> 2 days ago
+    </div>
+  </div>
+<% end %>
