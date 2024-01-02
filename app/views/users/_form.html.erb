@@ -20,6 +20,10 @@
     <label for="inputAvatar" class="form-label"><%= f.label :avatar %></label>
     <%= f.file_field :avatar %>
   </div>
+
+  <% if !@user.new_record? %>
+    <%= link_to "delete my user", user_path(current_user), class:"", method: :delete, data: {confirm: "Are you sure? Account deletion is irreversible"} %>
+  <% end %>
   
   <div class="mb-2">
     <%= f.submit(@user.new_record? ? "Sign Up" : "Update User", class: "btn btn-primary btn-md") %>

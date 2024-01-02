@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   before_save { self.email = email.downcase }
 
-  has_many :posts
+  has_many :posts, dependent: :destroy
   has_one_attached :avatar do |attachable|
     attachable.variant :base, resize_to_limit: [200, 200]
   end
