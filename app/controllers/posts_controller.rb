@@ -69,5 +69,6 @@ class PostsController < ApplicationController
       if current_user != @post.user && !current_user.admin
         flash[:warn] = "You aren't authorized to perform that action"
         redirect_to posts_path
+      end
     end
 end
