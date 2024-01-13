@@ -9,7 +9,6 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
       flash[:notice] = "Logged in successfully"
-      puts "el dogo"
       redirect_to posts_path
     else
       flash.now[:warn] = "incorrect login"
